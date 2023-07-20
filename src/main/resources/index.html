@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie-edge">
+    <meta name="viewport" content="width-device-width", initial-scale="1">
+
+    <title>EVENTO DE POKEMONS</title>
+</head>
+
+<body>
+    <ul></ul>
+
+    <script type="text/javascript">
+    if (!!window.EventSource){
+        var evtSource = new EventSource('products/events');
+        //http://localhost:8080/index.html
+        var eventList = document.querySelector('ul');
+
+        evtSource.onMessage = function(e){
+            var newElement = document.createElement("li");
+
+            newElement.textContent = "Event: " + e.data;
+            eventList.appendChild(newElement);
+            }
+        } else {
+            alert("The browser doesn't support SSE");
+        }
+    </script>
+</body>
+</html>
